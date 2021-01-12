@@ -6,7 +6,7 @@ class MyBottomNavigationBar extends ConsumerWidget {
   static const items = <BottomNavigationBarItem>[
     BottomNavigationBarItem(
       icon: Icon(Icons.home),
-      label: 'home',
+      label: 'user',
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.label),
@@ -18,9 +18,9 @@ class MyBottomNavigationBar extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     return BottomNavigationBar(
       items: items,
-      currentIndex: watch(homeScreenStateProvider.state).index,
+      currentIndex: watch(homeScreenProvider.state).index,
       onTap: (index) {
-        context.read(homeScreenStateProvider).changeIndex(index: index);
+        context.read(homeScreenProvider).changeIndex(index: index);
       },
     );
   }
