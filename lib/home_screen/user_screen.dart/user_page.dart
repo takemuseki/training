@@ -10,19 +10,31 @@ class UserPage extends StatelessWidget {
   };
 
   final inputFormList = <Widget>[];
+  bool first = true;
 
   @override
   Widget build(BuildContext context) {
-    controllerMap.forEach(
-      (key, value) {
-        inputFormList.add(
-          MyInputField(
-            textController: value,
-            infoEnum: key,
-          ),
-        );
-      },
-    );
+    if (first) {
+      /*
+      inputFormList.add(
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.1,
+        ),
+      );
+      */
+      controllerMap.forEach(
+        (key, value) {
+          inputFormList.add(
+            MyInputField(
+              textController: value,
+              infoEnum: key,
+            ),
+          );
+        },
+      );
+      first = false;
+    }
+
     return UserFormPage(inputFormList: inputFormList);
   }
 }
@@ -50,6 +62,8 @@ class UserFormPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Center(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: inputFormList,
             ),
           ),
