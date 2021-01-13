@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:training/home_screen/bottom_navigation_bar.dart';
 import 'package:training/home_screen/training_page.dart';
-import 'package:training/home_screen/user_page.dart';
+import 'package:training/home_screen/user_screen.dart/user_page.dart';
 import 'package:training/provider.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -23,8 +23,8 @@ class HomeScreen extends ConsumerWidget {
     @required int index,
   }) {
     if (index == 0) {
-      return UserPage();
+      return userPage;
     }
-    return TrainingPage();
+    return trainingPage;
   }
 }
