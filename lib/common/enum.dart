@@ -4,7 +4,7 @@ enum UserInfoEnum {
   userName,
   height,
   weight,
-  age,
+  birthday,
   bodyFatPercentage,
   benchPress,
   deadLift,
@@ -30,7 +30,7 @@ class UserInfoEnumToString {
         return '体重';
       case UserInfoEnum.bodyFatPercentage:
         return '体脂肪率';
-      case UserInfoEnum.age:
+      case UserInfoEnum.birthday:
         return '年齢';
     }
     return null;

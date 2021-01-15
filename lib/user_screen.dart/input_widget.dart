@@ -47,57 +47,59 @@ class ConsumerTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void submit({@required String value}) {
-      switch (infoEnum) {
-        case UserInfoEnum.userName:
-          context.read(userInfoProvider).changeName(name: value);
-          break;
-        case UserInfoEnum.height:
-          break;
-        case UserInfoEnum.weight:
-          break;
-        case UserInfoEnum.age:
-          break;
-        case UserInfoEnum.bodyFatPercentage:
-          break;
-        case UserInfoEnum.benchPress:
-          break;
-        case UserInfoEnum.deadLift:
-          break;
-        case UserInfoEnum.backSquat:
-          break;
-      }
-    }
+    String label;
+    return Consumer(
+      builder: (context, watch, child) {
+        print('infoEnum');
+        print(infoEnum);
+        dynamic value;
+        switch (infoEnum) {
+          case UserInfoEnum.userName:
+            break;
+          case UserInfoEnum.height:
+            break;
+          case UserInfoEnum.weight:
+            break;
+          case UserInfoEnum.birthday:
+            break;
+          case UserInfoEnum.bodyFatPercentage:
+            break;
+          case UserInfoEnum.benchPress:
+            value = watch(userInfoProvider).state.benchPress;
+            break;
+          case UserInfoEnum.deadLift:
+            value = watch(userInfoProvider.state).deadLift;
+            break;
+          case UserInfoEnum.backSquat:
+            value = watch(userInfoProvider.state).backSquat;
+            break;
+        }
+        if (value == null) {
+          label = '数値を入力してください';
+        } else {
+          label = value.toString();
+        }
+        return UserTextField(
+          textController: textController,
+          label: label,
+          submit: (String text) {
+            print(context.read(userInfoProvider.state));
 
-    return Consumer(builder: (context, watch, child) {
-      double label;
-      switch (infoEnum) {
-        case UserInfoEnum.backSquat:
-          label = watch(userInfoProvider.state).backSquat;
-          break;
-        case UserInfoEnum.deadLift:
-          label = watch(userInfoProvider.state).deadLift;
-          break;
-        case UserInfoEnum.benchPress:
-          label = watch(userInfoProvider.state).benchPress;
-          break;
-        case UserInfoEnum.userName:
-          break;
-        case UserInfoEnum.height:
-          break;
-        case UserInfoEnum.weight:
-          break;
-        case UserInfoEnum.age:
-          break;
-        case UserInfoEnum.bodyFatPercentage:
-          break;
-      }
-      return UserTextField(
-        textController: textController,
-        label: label,
-        submit: (String text) {},
-      );
-    });
+            print('submit');
+            print(text);
+
+            print(111);
+            context.read(userInfoProvider).changeInfoWithEnum(
+                  userInfoEnum: infoEnum,
+                  value: double.parse(text),
+                );
+            print('yes');
+            print(context.read(userInfoProvider.state));
+            textController.clear();
+          },
+        );
+      },
+    );
   }
 }
 
@@ -109,15 +111,21 @@ class UserTextField extends StatelessWidget {
     @required this.submit,
   }) : super(key: key);
   final TextEditingController textController;
-  final double label;
+  final String label;
   final Function(String) submit;
   @override
   Widget build(BuildContext context) {
+    print('userTextField');
+    print(label);
     return TextField(
       controller: textController,
-      keyboardType: TextInputType.multiline,
+      autocorrect: false,
+      keyboardType: const TextInputType.numberWithOptions(
+        decimal: true,
+        signed: true,
+      ),
       decoration: InputDecoration(
-        labelText: label.toString(),
+        hintText: label,
         fillColor: Colors.white,
       ),
       onSubmitted: submit,

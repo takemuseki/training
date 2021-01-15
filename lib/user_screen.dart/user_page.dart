@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:training/common/enum.dart';
-import 'package:training/home_screen/user_screen.dart/input_widget.dart';
+import 'package:training/user_screen.dart/input_widget.dart';
 
 class UserPage extends StatelessWidget {
   final controllerMap = <UserInfoEnum, TextEditingController>{
