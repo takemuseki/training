@@ -50,8 +50,6 @@ class ConsumerTextField extends StatelessWidget {
     String label;
     return Consumer(
       builder: (context, watch, child) {
-        print('infoEnum');
-        print(infoEnum);
         dynamic value;
         switch (infoEnum) {
           case UserInfoEnum.userName:
@@ -83,18 +81,10 @@ class ConsumerTextField extends StatelessWidget {
           textController: textController,
           label: label,
           submit: (String text) {
-            print(context.read(userInfoProvider.state));
-
-            print('submit');
-            print(text);
-
-            print(111);
             context.read(userInfoProvider).changeInfoWithEnum(
                   userInfoEnum: infoEnum,
                   value: double.parse(text),
                 );
-            print('yes');
-            print(context.read(userInfoProvider.state));
             textController.clear();
           },
         );
@@ -115,8 +105,6 @@ class UserTextField extends StatelessWidget {
   final Function(String) submit;
   @override
   Widget build(BuildContext context) {
-    print('userTextField');
-    print(label);
     return TextField(
       controller: textController,
       autocorrect: false,

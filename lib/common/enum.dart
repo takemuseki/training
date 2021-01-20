@@ -15,6 +15,7 @@ class UserInfoEnumToString {
   static String toJapanese({
     @required UserInfoEnum userInfoEnum,
   }) {
+    print('toJapanese');
     switch (userInfoEnum) {
       case UserInfoEnum.benchPress:
         return 'ベンチプレス';
@@ -35,4 +36,9 @@ class UserInfoEnumToString {
     }
     return null;
   }
+}
+
+enum HomeBodyEnum {
+  userPage,
+  trainingPage,
 }

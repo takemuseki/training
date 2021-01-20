@@ -17,11 +17,10 @@ class MyBottomNavigationBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     return BottomNavigationBar(
-
       items: items,
       currentIndex: watch(homeScreenProvider.state).index,
       onTap: (index) {
-        context.read(homeScreenProvider).changeIndex(index: index);
+        context.read(homeBodyEnumProvider).state = index;
       },
     );
   }

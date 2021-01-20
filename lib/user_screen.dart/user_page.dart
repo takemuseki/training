@@ -2,39 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:training/common/enum.dart';
 import 'package:training/user_screen.dart/input_widget.dart';
 
-class UserPage extends StatelessWidget {
+class UserPage extends StatefulWidget {
+  @override
+  _UserPageState createState() => _UserPageState();
+}
+
+class _UserPageState extends State<UserPage> {
   final controllerMap = <UserInfoEnum, TextEditingController>{
     UserInfoEnum.backSquat: TextEditingController(),
     UserInfoEnum.benchPress: TextEditingController(),
     UserInfoEnum.deadLift: TextEditingController(),
   };
-
   final inputFormList = <Widget>[];
-  bool first = true;
+  @override
+  void initState() {
+    print('userPage initState');
+    controllerMap.forEach(
+      (key, value) {
+        inputFormList.add(
+          MyInputField(
+            textController: value,
+            infoEnum: key,
+          ),
+        );
+      },
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (first) {
-      /*
-      inputFormList.add(
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.1,
-        ),
-      );
-      */
-      controllerMap.forEach(
-        (key, value) {
-          inputFormList.add(
-            MyInputField(
-              textController: value,
-              infoEnum: key,
-            ),
-          );
-        },
-      );
-      first = false;
-    }
-
     return UserFormPage(inputFormList: inputFormList);
   }
 }
