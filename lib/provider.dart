@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
-import 'package:training/home_screen/home_screen_state/home_screen_state.dart';
-import 'package:training/training_screen/training_page.dart';
-import 'package:training/user_info/user_info_state.dart';
-import 'package:training/user_screen.dart/user_page.dart';
+import 'package:training/model/user_info/user_info_state.dart';
+import 'package:training/screens/home_screen/home_screen_state/home_screen_state.dart';
+
+import 'screens/training_screen/training_screen.dart';
+import 'screens/user_screen.dart/user_page.dart';
 
 final homeScreenProvider = StateNotifierProvider<HomeScreenController>((ref) {
   return HomeScreenController();

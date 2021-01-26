@@ -1,4 +1,23 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+enum TrainingEnum {
+  backSquat,
+  benchPress,
+  deadLift,
+}
+
+extension TrainingEnumExt on TrainingEnum {
+  String get name {
+    switch (this) {
+      case TrainingEnum.backSquat:
+        return 'バックスクワット';
+      case TrainingEnum.benchPress:
+        return 'ベンチプレス';
+      case TrainingEnum.deadLift:
+        return 'デッドリフト';
+    }
+    return null;
+    // 省略
+  }
+}
 
 enum UserInfoEnum {
   userName,
@@ -11,12 +30,9 @@ enum UserInfoEnum {
   backSquat,
 }
 
-class UserInfoEnumToString {
-  static String toJapanese({
-    @required UserInfoEnum userInfoEnum,
-  }) {
-    print('toJapanese');
-    switch (userInfoEnum) {
+extension UserInfoEnumEx on UserInfoEnum {
+  String get name {
+    switch (this) {
       case UserInfoEnum.benchPress:
         return 'ベンチプレス';
       case UserInfoEnum.deadLift:

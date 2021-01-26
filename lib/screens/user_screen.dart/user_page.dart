@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:training/common/enum.dart';
-import 'package:training/user_screen.dart/input_widget.dart';
+
+import 'input_widget.dart';
 
 class UserPage extends StatefulWidget {
   @override
@@ -55,7 +57,7 @@ class UserFormPage extends StatelessWidget {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         child: SingleChildScrollView(
           child: Center(
             child: Column(

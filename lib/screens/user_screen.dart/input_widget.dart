@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/all.dart';
 import 'package:training/common/enum.dart';
 import 'package:training/provider.dart';
 
+/// make ConsumerTextFiled with Card Widget
 class MyInputField extends StatelessWidget {
   const MyInputField({
     Key key,
@@ -15,26 +16,30 @@ class MyInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final event = UserInfoEnumToString.toJapanese(userInfoEnum: infoEnum);
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(event),
-            ConsumerTextField(
-              infoEnum: infoEnum,
-              textController: textController,
-            ),
-          ],
+    final event = infoEnum.name;
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(event),
+              ConsumerTextField(
+                infoEnum: infoEnum,
+                textController: textController,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
+/// inject function into UserTextField
 class ConsumerTextField extends StatelessWidget {
   const ConsumerTextField({
     Key key,
@@ -63,7 +68,7 @@ class ConsumerTextField extends StatelessWidget {
           case UserInfoEnum.bodyFatPercentage:
             break;
           case UserInfoEnum.benchPress:
-            value = watch(userInfoProvider).state.benchPress;
+            value = watch(userInfoProvider.state).benchPress;
             break;
           case UserInfoEnum.deadLift:
             value = watch(userInfoProvider.state).deadLift;

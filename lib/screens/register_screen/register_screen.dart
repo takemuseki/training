@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:training/common/enum.dart';
-import 'package:training/home_screen/home_screen.dart';
-import 'package:training/user_screen.dart/input_widget.dart';
+import 'package:training/screens/home_screen/home_screen.dart';
+import 'package:training/screens/user_screen.dart/input_widget.dart';
 
 class RegisterScreen extends StatelessWidget {
   final registerController = <UserInfoEnum, TextEditingController>{
@@ -40,7 +40,8 @@ class RegisterScreen extends StatelessWidget {
               Navigator.push<Object>(
                   context,
                   MaterialPageRoute<Object>(
-                      builder: (context) => HomeScreen()));
+                    builder: (context) => NavigationScreen(),
+                  ));
             },
           ),
         ],

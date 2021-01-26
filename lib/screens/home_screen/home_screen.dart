@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/all.dart';
-import 'package:training/provider.dart';
-import 'package:training/training_screen/training_page.dart';
-import 'package:training/user_screen.dart/user_page.dart';
-
+import 'package:training/screens/training_screen/training_screen.dart';
+import 'package:training/screens/user_screen.dart/user_page.dart';
+/*
 class HomeScreen extends StatelessWidget {
   static const items = <BottomNavigationBarItem>[
     BottomNavigationBarItem(
@@ -38,6 +36,8 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+ */
+
 class NavigationScreen extends StatefulWidget {
   @override
   _NavigationScreenState createState() => _NavigationScreenState();
@@ -69,15 +69,44 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     print('navigationScreen');
 
-    return SafeArea(
-      child: Scaffold(
-        body: _widgetOptions.elementAt(_selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          items: items,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
+    return Scaffold(
+      body: Container(
+        color: Theme.of(context).appBarTheme.shadowColor,
+        child: SafeArea(
+          child: _widgetOptions.elementAt(_selectedIndex),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: items,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        showSelectedLabels: true,
+        showUnselectedLabels: false,
+        selectedLabelStyle: const TextStyle(
+          fontSize: 12,
+        ),
+        iconSize: 30,
+      ),
     );
+
+    /*
+    return SafeArea(
+      child: CupertinoTabScaffold(
+        tabBar: CupertinoTabBar(
+          items: items,
+          iconSize: 36,
+        ),
+        tabBuilder: (context, index) {
+          switch (index) {
+            case 0:
+              return UserPage();
+            case 1:
+              return TrainingPage();
+          }
+        },
+      ),
+    );
+
+     */
   }
 }
